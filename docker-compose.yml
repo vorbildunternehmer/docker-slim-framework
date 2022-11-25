@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+  slim-api:
+    restart: always
+    image: slim-api:latest
+    networks:
+      - slim-backend
+    ports:
+      - $PORT:80
+    volumes:
+      - $API_PATH:/var/www/html/
+    environment:
+      - MYSQL_HOST=$MYSQL_HOST
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PORT=$MYSQL_PORT
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+networks:
+  slim-backend:
+      driver: bridge
